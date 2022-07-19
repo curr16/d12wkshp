@@ -18,9 +18,8 @@ public class IndexResource {
     public String index(Model model) {
         model.addAttribute("CurrTime", (new Date().toString()));
 
-        // Calendar cal = new Calendar;
-        // String attributeName;
-        // model.addAttribute("CurrHour", cal.get(Calendar.HOUR_OF_DAY));
+        Calendar cal = Calendar.getInstance();
+         model.addAttribute("CurrHour", cal.get(Calendar.HOUR_OF_DAY));
 
         return "indexresource";
     }
