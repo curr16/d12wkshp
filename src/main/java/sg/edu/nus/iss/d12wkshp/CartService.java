@@ -33,6 +33,11 @@ public class CartService {
         itm.setQuantiy(3);
         lstItems.add(itm);
 
+        itm = new Item();
+        itm.setItemName("Chanel Wallet");
+        itm.setQuantiy(6);
+        lstItems.add(itm);
+
         return lstItems;
     
         }

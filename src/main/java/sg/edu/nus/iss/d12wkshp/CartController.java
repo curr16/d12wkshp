@@ -3,23 +3,39 @@ package sg.edu.nus.iss.d12wkshp;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
-@RequestMapping(path= {"/cart"})
+@RequestMapping(path = { "/cart" })
 public class CartController {
-
-    @GetMapping(produces = {"text/html"})
+    
+    @GetMapping(produces = { "text/html" })
     public String displayCart(Model model) {
-        List<Item> cartItems = getShoppingItems();
+        CartService cs = new CartService();
+        List<Item> cartItems = cs.getShoppingItems();
         model.addAttribute("cart", cartItems);
+
         return "cart";
     }
 
-    private List<Item> getShoppingItems() {
-        return null;
-    }
+    @GetMapping("{itemname}")
+    public String filteredCart(
+        @PathVariable(name="itemname", required=true) String itemname,
+        Model model) {
+        CartService cs = new CartService();
+        List<Item> cartItems = cs.getShoppingItems();
 
-    
+        List<Item> filteredItems = new ArrayList<>();
+        for (Item s: cartItems) {
+            if (s.getItemName().contains(itemname)) {
+                filteredItems.add(s);
+            }
+        }
+        model.addAttribute("cart", filteredItems);
+        return "cart";
+    }
 }

@@ -1,7 +1,8 @@
 package sg.edu.nus.iss.d12wkshp;
 
+import java.util.Calendar;
 import java.util.Date;
-//import java.util.Calendar;
+
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -18,7 +19,7 @@ public class IndexResource {
         model.addAttribute("CurrTime", (new Date().toString()));
 
         // Calendar cal = new Calendar;
-        // //String attributeName;
+        // String attributeName;
         // model.addAttribute("CurrHour", cal.get(Calendar.HOUR_OF_DAY));
 
         return "indexresource";
